@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexura | Agentic ERP Automation</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --bg-white: #F9FBFC; 
+            --teal-main: #008081; 
+            --teal-dark: #005f60;
+            --slate: #2F3E46;
+            --accent: #71F5C7;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-white);
+            color: var(--slate);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        ul {
+            margin: 0 0 0rem 1.5rem;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 5%;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: 0.3s all ease;
+            background: transparent;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            letter-spacing: -1px;
+            color: var(--teal-main);
+            display: flex;
+            align-items: center;
+            z-index: 1001;
+        }
+
+        .logo::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+
+        /* Menu Toggle Button (Mobile Only) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--teal-main);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--slate);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .cta-nav {
+            background: var(--teal-main);
+            color: white !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+        }
+
+        /* Hero Section */
+        header {
+            padding: 140px 5% 60px;
+            text-align: center;
+            background: radial-gradient(circle at top right, #eafff8, var(--bg-white));
+        }
+
+        h1 {
+            /* Fluid typography: grows with screen size */
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        h1 span { color: var(--teal-main); }
+
+        header p {
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            color: #666;
+        }
+
+        .primary-btn {
+            background: var(--teal-main);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            width: 100%;
+            max-width: 280px;
+            cursor: pointer;
+        }
+
+        /* Solutions Grid */
+        #solutions{
+            padding: 40px 5% 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #projectsCompleted{
+            padding: 40px 5% 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 0 auto;
+            width: 92%;
+            max-width: 1500px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid #edf2f4;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .card2 {
+            background: var(--white);
+            padding: 2rem 5rem 0 0;
+            margin-left: -5em;
+            width: 1600px;
+            border-radius: 20px;
+            border: 1px solid #edf2f4;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .card2 p {
+          font-size: 1.08rem;
+            line-height: 1.9;
+            color: #5d6a70;
+            width: 1600px;
+            max-width: 1500px;
+            margin: 0 auto 1.5rem;
+            text-align: left;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--teal-main);
+        }
+
+        .detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s;
+            opacity: 0;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .card.active .detail {
+            max-height: 300px;
+            opacity: 1;
+            padding-top: 1rem;
+            margin-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e6f2f2;
+            color: var(--teal-main);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        /* --- MOBILE BREAKPOINT --- */
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+
+            nav ul {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+                transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            nav ul.active { right: 0; }
+
+            /* Hamburger to 'X' animation */
+            .menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .menu-toggle.active span:nth-child(2) { opacity: 0; }
+            .menu-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+            header { padding-top: 120px; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        .hero-copy {
+            width: 92%;
+            max-width: 1500px;
+            margin: 0 auto 2.5rem;
+            padding: 2rem 3rem;
+        }
+
+        .hero-copy p {
+            font-size: 1.08rem;
+            line-height: 1.9;
+            color: #5d6a70;
+            width: 92%;
+            max-width: 1500px;
+            margin: 0 auto 1.5rem;
+            padding: 1rem 2rem;
+            text-align: left;
+        }
+
+        .hero-copy p:last-child {
+            margin-bottom: 0;
+        }
+
+        .hero-copy strong {
+            color: var(--teal-main);
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="logo">NEXURA</div>
+        
+        <button class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul id="nav-links">
+            <li><a href="#solutionsLink">Solutions</a></li>
+            <li><a href="#ecosystem">Ecosystem</a></li>
+            <li><a href="#" class="cta-nav">Request Access</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <div class="badge">AI Automation</div>
+        <h1>The Intelligence Layer <br>for <span>Enterprise ERP</span></h1>
+       <div class="hero-copy">
+            <p>
+                Nexura deploys agentic workflows that streamline Finance, HR, and operational
+                processes across enterprise platforms including SAP, Oracle, and Workday.
+            </p>
+        
+            <p>
+                Our solutions combine <strong>automation, AI agents, LLMs, and data orchestration</strong>
+                to modernise outdated workflows and reduce operational overhead.
+
+                From enterprise systems and software to web platforms, mobile applications,
+                and scalable data infrastructure, we build robust solutions engineered for
+                long-term growth.
+            </p>
+        
+            <p>
+                We work across industries, helping organisations adopt intelligent systems
+                tailored to their operational challenges and digital transformation goals.
+            </p>
+        </div>
+        <button class="primary-btn">View Use Cases</button>
+    </header>
+
+    <section id="solutions">
+        <div class="card" onclick="toggleCard(this)">
+            <div class="badge">Finance</div>
+            <h3>Autonomous 3-Way Match</h3>
+            <p>AI agents reconcile POs, receipts, and invoices with 99.9% accuracy.</p>
+            <div class="detail">
+                Uses Computer Vision to extract data from non-standard vendor PDFs and automatically flags discrepancies.
+            </div>
+        </div>
+        <div class="card" onclick="toggleCard(this)">
+            <div class="badge">HR Tech</div>
+            <h3>Predictive Retention</h3>
+            <p>Monitor "drift" patterns to identify turnover risks before they happen.</p>
+            <div class="detail">
+                Analyzes engagement metrics to alert managers when key talent shows signs of attrition.
+            </div>
+        </div>
+
+        <div class="card" onclick="toggleCard(this)">
+            <div class="badge">Global Ops</div>
+            <h3>Multi-Entity Payroll</h3>
+            <p>Continuous reconciliation across global tax jurisdictions.</p>
+            <div class="detail">
+                Eliminates the "Month-End" rush by reconciling international payroll data every 24 hours.
+            </div>
+        </div>
+    </section>
+
+
+
+    <header id="solutionsLink">
+        <h1>Recent solutions <br>for <span>Medium & Enterprise Businesses</span></h1>
+    </header>
+
+    <section id="projectsCompleted">
+        <div class="card2" onclick="toggleCard(this)">
+            <div class="badge">Enterprise Change Process</div>
+            <h3>Automating Change Strategies</h3>
+            <p>We were approached to develop a Change Strategy tool which automates change startegy and recommendations.
+            The idea was problem was simple: Post Change meetings Change strategies can be tiresome and and contain errors. 
+            The client wanted to improve this process and be in a position where change meetings are more streamlined and strategys are easier to produce
+            and with less errors.</p>
+            <p>
+            <strong>The solution? </strong>A system which when fed Change documents , structured and unstructured, ran an Agentic workflow and OpenSource LLM model
+            to understand the Change company and change context. The it will produce a Change Startegy presentation in the form of a Slide deck.
+            </p>
+
+
+            <img src="img/changetoolImg.png"
+
+        </div>
+        <br> 
+    </section>
+
+    <header id="ecosystem">
+        <h1>Our Ecosystem</h1>
+    </header>
+
+    <section id="projectsCompleted">
+        <div class="card2" onclick="toggleCard(this)">
+            <div class="badge">The Processes, Methods, Tech &ools</div>
+            <h3>Choosing the best in class</h3>
+            <p>When it comes to our methodology we don't simply knock out full systems in a day and hand it over. We understand that to create the best solutions
+            we need solid methodology that's been tried and tested, methodologies which have been System and Software development Standards way before the age of
+            AI.
+            </p>
+
+            <p>We have a HUGE passion for computing, web, mobile and desktop technologies so buidl for passion, for clients and for our own hobbies.
+                It's the life cycle of tech. So when it comes to desiging and building we keep an eye on new tech and the old tech too.
+
+                We can take old tech and combine it with new, modernise old tech or just use only new tech. The only thng that matters i quality solutions and output
+                and putting our loyal clients and custmers first.
+            </p>
+
+            <p>
+            Some of things we build and enjoy doing it include but not limited to:
+            <ul>
+                <li>AI Automations</li>
+                <li>Agentic Workflows & Development</li>
+                <li>ERP Integrations</li>
+                <li>Data Management</li>
+                <li>Software Development</li>
+                <li>Software and Data Integrations</li>
+                <li>Website and Web App Development</li>
+                <li>Mobile App Development</li>
+            </ul>
+             </p>
+
+            <p>Most but not all of our tech stacks are based around:
+            <ul>
+                <li>Software Development Methodologies, Standards and Processes</li>
+                <li>.Net</li>
+                <li>Python</li>
+                <li>LLMs</li>
+                <li>Agents</li>
+                <li>OpenAPI</li>
+                <li>REST API</li>
+                <li>Custom APIs</li>
+                <li>SQL</li>
+                <li>JS</li>
+                <li>NoSQL</li>
+                <li>SaaS</li>
+            </ul> 
+            </p>
+
+
+        </div>
+        <br> 
+    </section>
+
+    <footer>
+        &copy; 2026 Nexura Systems. Part of the DL IT Services.
+    </footer>
+
+    <script>
+        // Toggle Mobile Menu
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('#nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Card Toggle logic
+        function toggleCard(element) {
+            element.classList.toggle('active');
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                if (card !== element) card.classList.remove('active');
+            });
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 40) {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.padding = '0.8rem 5%';
+                nav.style.boxShadow = '0 5px 20px rgba(0,0,0,0.05)';
+            } else {
+                nav.style.background = 'transparent';
+                nav.style.padding = '1.5rem 5%';
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
