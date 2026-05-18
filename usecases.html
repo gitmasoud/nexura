@@ -1,0 +1,578 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexura | Agentic FinOps Platform Use Cases</title>
+    <style>
+        :root {
+            --bg-deep: #0B0F13;
+            --bg-surface: #141A21;
+            --bg-surface-elevated: #1C242F;
+            --emerald: #00D1A0;
+            --teal: #00F2EA;
+            --text-primary: #F0F4F8;
+            --text-secondary: #8A99A8;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(0, 242, 234, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Fixed Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 6%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(11, 15, 19, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--teal), var(--emerald));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--teal);
+            margin-right: 8px;
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .btn-sm {
+            background: rgba(0, 242, 234, 0.1);
+            color: var(--teal);
+            border: 1px solid rgba(0, 242, 234, 0.3);
+            padding: 0.5rem 1.25rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-sm:hover {
+            background: linear-gradient(90deg, var(--teal), var(--emerald));
+            color: #000;
+            border-color: transparent;
+        }
+
+        /* Hero Header */
+        header {
+            padding: 160px 6% 60px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 100px;
+            background: rgba(0, 210, 160, 0.08);
+            border: 1px solid rgba(0, 210, 160, 0.15);
+            color: var(--emerald);
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.25rem;
+        }
+
+        header h1 span {
+            background: linear-gradient(135deg, var(--teal), var(--emerald));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 6% 100px;
+        }
+
+        /* Layout Architecture: Alternating Feature Blocks */
+        .feature-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .feature-block:last-of-type {
+            border-bottom: none;
+        }
+
+        .feature-block.reversed {
+            direction: rtl;
+        }
+
+        .feature-block.reversed .feature-info {
+            direction: ltr;
+        }
+
+        .feature-block.reversed .feature-visual {
+            direction: ltr;
+        }
+
+        .feature-info .section-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--teal);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .feature-info h2 {
+            font-size: 1.85rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            line-height: 1.25;
+        }
+
+        .feature-info p.lead {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Business Impact & Architecture Details */
+        .architecture-notes {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .note-row {
+            margin-bottom: 1rem;
+        }
+        .note-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .note-row strong {
+            display: block;
+            color: var(--emerald);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .note-row p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* FinOps Pure CSS Data Dashboards & Visuals */
+        .feature-visual {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 1rem;
+        }
+
+        .dash-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dash-status {
+            font-size: 0.75rem;
+            color: var(--emerald);
+            background: rgba(0, 210, 160, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* CSS Matching Engine Visualizer */
+        .matching-engine {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .match-row {
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: border-color 0.3s;
+        }
+
+        .match-row.active-match {
+            border-color: var(--border-glow);
+        }
+
+        .doc-type {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .doc-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+
+        .doc-icon.po { color: #FFB800; }
+        .doc-icon.rcpt { color: #00F2EA; }
+        .doc-icon.inv { color: var(--emerald); }
+
+        .doc-meta {
+            text-align: right;
+            font-size: 0.8rem;
+        }
+        .doc-meta span {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+        }
+
+        /* Review Queue Visualizer */
+        .queue-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .queue-item {
+            background: var(--bg-surface-elevated);
+            border-left: 3px solid #FF4A4A;
+            padding: 0.75rem 1rem;
+            border-radius: 0 6px 6px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        .queue-reason {
+            color: #FF4A4A;
+            font-weight: 600;
+        }
+
+        .queue-action {
+            font-size: 0.75rem;
+            color: var(--teal);
+            cursor: pointer;
+        }
+
+        /* Chart Module Visualizer */
+        .chart-container {
+            height: 140px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding-top: 1rem;
+            gap: 12px;
+        }
+
+        .chart-bar-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chart-bar {
+            width: 100%;
+            border-radius: 4px 4px 0 0;
+            background: linear-gradient(to top, rgba(0, 242, 234, 0.2), var(--teal));
+            position: relative;
+            transition: height 1s ease;
+        }
+
+        .chart-bar.secondary {
+            background: linear-gradient(to top, rgba(0, 210, 160, 0.2), var(--emerald));
+        }
+
+        .chart-label {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .feature-block, .feature-block.reversed {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                padding: 50px 0;
+            }
+            nav ul {
+                display: none;
+            }
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 6%;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">NEXURA</div>
+        <ul class="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="#matching" class="active">3-Way Match</a></li>
+            <li><a href="#exceptions">Real-Time Close</a></li>
+            <li><a href="#dashboard">FinOps Command</a></li>
+        </ul>
+        <a href="#" class="btn-sm">Deploy Workspace</a>
+    </nav>
+
+    <header>
+        <div class="badge">Next-Gen FinOps Workflows</div>
+        <h1>Eliminating the Month-End Rush via <span>Autonomous ERP Agents</span></h1>
+        <p>Transition from lagging transactional batches to live, real-time ledger consistency. Intelligent pipelines capture, cross-reference, and reconcile every event as it occurs.</p>
+    </header>
+
+    <div class="main-container">
+
+        <!-- USE CASE 1: AUTONOMOUS 3-WAY MATCH -->
+        <section id="matching" class="feature-block">
+            <div class="feature-info">
+                <div class="section-tag">Core Architecture</div>
+                <h2>Autonomous 3-Way Matching Engine</h2>
+                <p class="lead">Eliminate manual ledger verifications. Nexura maps unstructured line items straight from origin vectors directly into your ERP ledger.</p>
+                
+                <div class="architecture-notes">
+                    <div class="note-row">
+                        <strong>The Structural Bottleneck</strong>
+                        <p>Procure-to-Pay (P2P) cycles collapse under the weight of fragmented vendor invoices, partial warehouse receipts, and custom terms formatting.</p>
+                    </div>
+                    <div class="note-row">
+                        <strong>Agentic Solution & Review Routing</strong>
+                        <p>Our pipeline conducts semantic extraction across the PO, Delivery Receipt, and Invoice. If values balance perfectly, the cycle clears autonomously. If variations occur, errors are flagged automatically and immediately routed to a specialized manual Review Queue for quick validation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-visual">
+                <div class="dashboard-header">
+                    <div class="dash-title">◈ Live Matching Sandbox</div>
+                    <div class="dash-status">Active Stream</div>
+                </div>
+                <div class="matching-engine">
+                    <div class="match-row active-match">
+                        <div class="doc-type">
+                            <div class="doc-icon po">📋</div>
+                            <div>Purchase Order <span style="display:block;font-size:11px;color:var(--text-secondary);">PO-2026-89A</span></div>
+                        </div>
+                        <div class="doc-meta">$42,500.00 <span>Qty: 500 units</span></div>
+                    </div>
+                    <div class="match-row active-match">
+                        <div class="doc-type">
+                            <div class="doc-icon rcpt">📦</div>
+                            <div>Receipt Note <span style="display:block;font-size:11px;color:var(--text-secondary);">REC-9921X</span></div>
+                        </div>
+                        <div class="doc-meta">Verified <span>Qty: 500 units</span></div>
+                    </div>
+                    <div class="match-row active-match" style="border-color: var(--emerald);">
+                        <div class="doc-type">
+                            <div class="doc-icon inv">💵</div>
+                            <div>Supplier Invoice <span style="display:block;font-size:11px;color:var(--text-secondary);">INV-88127</span></div>
+                        </div>
+                        <div class="doc-meta" style="color:var(--emerald);">$42,500.00 <span style="color:var(--emerald);">✓ Balanced Sync</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- USE CASE 2: EXCEPTION ROUTING AND REVIEW QUEUE -->
+        <section id="exceptions" class="feature-block reversed">
+            <div class="feature-info">
+                <div class="section-tag">Exception Infrastructure</div>
+                <h2>Automated Invoice and Purchase Order Flagging & Dynamic Review Queues</h2>
+                <p class="lead">Isolate processing errors dynamically without pausing standard system updates. Keep transactions moving smoothly through deterministic containment.</p>
+                
+                <div class="architecture-notes">
+                    <div class="note-row">
+                        <strong>The Structural Bottleneck</strong>
+                        <p>A single unit discrepancy shouldn't stall vendor relationships. Legacy systems completely halt the pipeline when encountering partial deliveries or pricing drifts.</p>
+                    </div>
+                    <div class="note-row">
+                        <strong>Agentic Solution</strong>
+                        <p>Nexura isolates conflicting documents instantly. It isolates the exact discrepancy (e.g., freight cost variation), registers standard items directly into the ledger, and pipes the variance to a modern staging queue for rapid manual correction.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-visual">
+                <div class="dashboard-header">
+                    <div class="dash-title">⚠️ Isolated Anomalies</div>
+                    <div class="dash-status" style="background:rgba(255,74,74,0.1);color:#FF4A4A;">Requires Hand-off</div>
+                </div>
+                <div class="queue-container">
+                    <div class="queue-item">
+                        <div>
+                            <span class="queue-reason">[Line Drift] INV-9021</span>
+                            <p style="color:var(--text-secondary);font-size:11px;margin-top:2px;">Freight charge mismatch vs original PO-112</p>
+                        </div>
+                        <div class="queue-action">Resolve ↗</div>
+                    </div>
+                    <div class="queue-item">
+                        <div>
+                            <span class="queue-reason">[Partial Vol] INV-773</span>
+                            <p style="color:var(--text-secondary);font-size:11px;margin-top:2px;">Invoice requests payment for 20 missing items</p>
+                        </div>
+                        <div class="queue-action">Resolve ↗</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- USE CASE 3: ALL-IN-ONE FINOPS DASHBOARD -->
+        <section id="dashboard" class="feature-block">
+            <div class="feature-info">
+                <div class="section-tag">Management Hub</div>
+                <h2>The Unified FinOps Command Center</h2>
+                <p class="lead">Replace disjointed financial tracking screens with a fast, real-time operating workspace built specifically for core business operations.</p>
+                
+                <div class="architecture-notes">
+                    <div class="note-row">
+                        <strong>The Structural Bottleneck</strong>
+                        <p>Controllers waste valuable operating hours compiling reporting templates from across disparate global databases and business branches.</p>
+                    </div>
+                    <div class="note-row">
+                        <strong>Agentic Solution</strong>
+                        <p>A clean, unified terminal mapping system that matches live operational costs against treasury realities, giving decision-makers immediate visibility into open payables, ledger updates, and dynamic variance trends.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-visual">
+                <div class="dashboard-header">
+                    <div class="dash-title">📊 Virtual Close Target Engine</div>
+                    <div class="dash-status">Continuous Mode</div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar" style="height: 110px;"></div>
+                        <span class="chart-label">W1 Close</span>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar secondary" style="height: 60px;"></div>
+                        <span class="chart-label">Variance %</span>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar" style="height: 125px;"></div>
+                        <span class="chart-label">Live Flow</span>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar secondary" style="height: 40px;"></div>
+                        <span class="chart-label">Flags Rate</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Nexura Systems. Enterprise Engine Architecture.
+    </footer>
+
+</body>
+</html>
