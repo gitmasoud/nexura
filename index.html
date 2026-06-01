@@ -273,6 +273,126 @@ footer {
     font-weight: 700;
 }
 
+/* Modern Contact Form */
+.contact-section {
+    padding: 60px 5% 100px;
+}
+
+.contact-card {
+    background: var(--white);
+    width: 95%;
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 3rem;
+    border-radius: 32px;
+    border: 1px solid #edf2f4;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.04);
+}
+
+.contact-card h3 {
+    font-size: 2rem;
+    color: var(--teal-main);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.contact-subtext {
+    color: #66757d;
+    font-size: 1.05rem;
+    margin-bottom: 2.5rem;
+    max-width: 650px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--slate);
+    margin-bottom: 0.7rem;
+}
+
+/* Modern Inputs */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    min-height: 68px;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid #dce7ea;
+    border-radius: 22px;
+    background: #fcfefe;
+    font-size: 1.05rem;
+    font-family: inherit;
+    color: var(--slate);
+    outline: none;
+    transition: all 0.25s ease;
+    appearance: none;
+}
+
+/* Larger textarea */
+.form-group textarea {
+    min-height: 180px;
+    resize: vertical;
+    padding-top: 1.3rem;
+}
+
+/* Modern focus effect */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--teal-main);
+    background: white;
+    box-shadow:
+        0 0 0 5px rgba(0, 128, 129, 0.08),
+        0 10px 30px rgba(0,0,0,0.03);
+    transform: translateY(-1px);
+}
+
+/* Placeholder styling */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #9aa8af;
+}
+
+/* Modern select arrow */
+.form-group select {
+    cursor: pointer;
+    background-image:
+        linear-gradient(45deg, transparent 50%, var(--teal-main) 50%),
+        linear-gradient(135deg, var(--teal-main) 50%, transparent 50%);
+    background-position:
+        calc(100% - 28px) calc(50% - 3px),
+        calc(100% - 20px) calc(50% - 3px);
+    background-size: 8px 8px;
+    background-repeat: no-repeat;
+}
+
+/* Modern button */
+.contact-form .primary-btn {
+    margin-top: 1rem;
+    min-height: 64px;
+    max-width: 320px;
+    border-radius: 22px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-form .primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(0, 128, 129, 0.2);
+}
+
 /* --- OPTIMIZED MOBILE BREAKPOINT --- */
 @media (max-width: 768px) {
     .menu-toggle { display: flex; }
@@ -372,7 +492,7 @@ footer {
             <li><a href="#solutionsLink">Solutions</a></li>
             <li><a href="#ecosystem">Ecosystem</a></li>
             <li><a href="usecases.html">Use cases</a></li>
-            <li><a onclick="requestAccess();" class="cta-nav" href="">Request Access</a></li>
+            <li><a class="cta-nav" href="#contact">Contact Us</a></li>
         </ul>
     </nav>
 
@@ -380,11 +500,13 @@ footer {
         <div class="badge">AI Automation</div>
         <h1>The Intelligence Layer <br>for <span> SMBs and Enterprises</span></h1>
         <img src="img/trendsDataWebScraper.gif" style="width: 85%;" alt="Google Trends Automation with Scraping Tool"/>
-        <p>Google Trends Automation with our built Scraping Tool</p>
+        <p>Here is our Google Trends Automated Scraping Tool in action. We pick filters in Google Trends and then we pull data in an instant into our systems for further processing. </p>
        <div class="hero-copy">
             <p>
-                Nexura deploys systems and agentic workflows that streamline the work your business does. Whether that's Finance, HR 
-                or other Operational daily tasks
+                Nexura deploys systems and agentic workflows that streamline the work your business does. Whether that is in Finance, HR 
+                or other Operational daily tasks in other Departments we may have solution to solve your problems.
+
+                Our tagret markets are SMEs & Enterprises who have Finance, IT, Operations and HR departments.
             </p>
         
             <p>
@@ -416,6 +538,7 @@ footer {
             <p>AI agents reconcile POs, receipts, and invoices with 99.9% accuracy.</p>
             <div class="detail">
                 Uses Computer Vision to extract data from non-standard vendor PDFs and automatically flags discrepancies.
+                Find out more here <a href="./finOpsForm.html">Request Demo </a>
             </div>
         </div>
         <div class="card" onclick="toggleCard(this)">
@@ -528,6 +651,57 @@ footer {
         </div>
         <br> 
     </section>
+
+    <section class="contact-section" id="contact">
+    <div class="contact-card">
+        <div class="badge">Request Information</div>
+        <h3>Tell us what you're interested in</h3>
+        <p class="contact-subtext">
+            Interested in one of our solutions? Send us a message and we'll get back to you.
+        </p>
+
+        <form class="contact-form">
+
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    placeholder="John Smith"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="solution">Interested Solution</label>
+                <select id="solution" name="solution" required>
+                    <option value="">Select a solution</option>
+                    <option>Google Scraping Tool</option>
+                    <option>FinOps Dashboard</option>
+                    <option>Agentic Change Strategy Agent</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    placeholder="Tell us more about your requirements..."
+                    required
+                ></textarea>
+            </div>
+
+            <button type="submit" class="primary-btn">
+                Submit Request
+            </button>
+
+        </form>
+    </div>
+</section>
+
 
     <footer>
         &copy; 2026 Nexura Systems. Part of the DL IT Services.
