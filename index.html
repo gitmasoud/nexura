@@ -475,167 +475,175 @@ footer {
     }
 }
 
-
-
-
-.pricing {
-  padding: 100px 20px;
+/* Pricing Section */
+.pricing-section {
+    padding: 60px 5% 100px;
 }
 
 .pricing-container {
-  max-width: 1200px;
-  margin: 0 auto;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.pricing-title {
-  text-align: center;
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 15px;
+.pricing-header {
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
-.pricing-subtitle {
-  text-align: center;
-  color: #9ca3af;
-  max-width: 700px;
-  margin: 0 auto 60px;
-  line-height: 1.6;
+.pricing-header h2 {
+    font-size: 2.5rem;
+    color: var(--teal-main);
+    margin-bottom: 0.75rem;
+}
+
+.pricing-header p {
+    color: #66757d;
+    max-width: 650px;
+    margin: 0 auto;
 }
 
 .pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
 }
 
 .pricing-card {
-  position: relative;
-  background: #111827;
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 24px;
-  padding: 40px;
-  transition: all 0.3s ease;
+    background: var(--white);
+    border: 1px solid #edf2f4;
+    border-radius: 24px;
+    padding: 2rem;
+    position: relative;
+    transition: all 0.3s ease;
 }
 
 .pricing-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(59,130,246,0.4);
+    transform: translateY(-4px);
 }
 
 .pricing-card.featured {
-  background: linear-gradient(
-    180deg,
-    rgba(37,99,235,0.25),
-    rgba(17,24,39,1)
-  );
-  border: 1px solid #2563eb;
-  transform: scale(1.04);
+    border: 2px solid var(--teal-main);
+    transform: scale(1.03);
 }
 
 .pricing-card.featured:hover {
-  transform: scale(1.04) translateY(-6px);
+    transform: scale(1.03) translateY(-4px);
 }
 
 .pricing-badge {
-  position: absolute;
-  top: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #2563eb;
-  color: white;
-  padding: 8px 18px;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 600;
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--teal-main);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .pricing-plan {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 20px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--teal-main);
+    margin-bottom: 0.5rem;
+}
+
+.pricing-users {
+    color: #66757d;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
 }
 
 .pricing-price {
-  font-size: 3rem;
-  font-weight: 800;
-  margin-bottom: 8px;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--slate);
+    line-height: 1;
+    margin-bottom: 0.5rem;
 }
 
 .pricing-price span {
-  font-size: 1rem;
-  color: #9ca3af;
-  font-weight: 500;
+    font-size: 1rem;
+    color: #66757d;
+    font-weight: 500;
 }
 
 .pricing-description {
-  color: #9ca3af;
-  line-height: 1.6;
-  margin-bottom: 30px;
+    color: #66757d;
+    margin-bottom: 2rem;
 }
 
 .pricing-features {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 35px;
+    list-style: none;
+    margin: 0 0 2rem 0;
+    padding: 0;
 }
 
 .pricing-features li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 14px;
-  color: #e5e7eb;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid #edf2f4;
+    color: var(--slate);
+}
+
+.pricing-features li:last-child {
+    border-bottom: none;
 }
 
 .pricing-features li::before {
-  content: "✓";
-  color: #3b82f6;
-  font-weight: bold;
+    content: "✓";
+    color: var(--teal-main);
+    font-weight: bold;
+    margin-right: 10px;
 }
 
 .pricing-btn {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+    width: 100%;
+    background: var(--teal-main);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
 }
 
-.pricing-btn-primary {
-  background: #2563eb;
-  color: white;
+.pricing-btn:hover {
+    background: var(--teal-dark);
 }
 
-.pricing-btn-primary:hover {
-  background: #1d4ed8;
+.pricing-btn-outline {
+    background: transparent;
+    color: var(--teal-main);
+    border: 2px solid var(--teal-main);
 }
 
-.pricing-btn-secondary {
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.15);
-  color: white;
+.pricing-btn-outline:hover {
+    background: var(--teal-main);
+    color: white;
 }
 
-.pricing-btn-secondary:hover {
-  background: rgba(255,255,255,0.05);
+@media (max-width: 768px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-card.featured {
+        transform: none;
+    }
+
+    .pricing-card.featured:hover {
+        transform: translateY(-4px);
+    }
+
+    .pricing-header h2 {
+        font-size: 2rem;
+    }
 }
-
-@media (max-width: 900px) {
-  .pricing-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .pricing-card.featured {
-    transform: none;
-  }
-
-  .pricing-card.featured:hover {
-    transform: translateY(-6px);
-  }
-}
-
 
     </style>
 </head>
@@ -653,7 +661,7 @@ footer {
         <ul id="nav-links">
             <li><a href="#products">Products</a></li>
             <li><a href="#solutionsLink">Solutions</a></li>
-            <li><a href="#pricing.html">Pricing</a></li>
+            <li><a href="#pricing">Pricing</a></li>
             <li><a href="#ecosystem">Ecosystem</a></li>
             <li><a href="usecases.html">Use cases</a></li>
             <li><a href="team.html">Team</a></li>
@@ -831,86 +839,187 @@ footer {
         <br> 
     </section>
 
-    <section className="pricing">
-  <div className="pricing-container">
-    <h2 className="pricing-title">Simple Pricing</h2>
-    <p className="pricing-subtitle">
-      Transparent FinOps pricing designed to scale with your organisation.
-    </p>
+    <section class="pricing-section" id="pricing">
+        <div class="pricing-container">
 
-    <div className="pricing-grid">
+            <div class="pricing-header">
+                <h2>FinOps Dashboard Pricing</h2>
+                <p>
+                    Transparent FinOps pricing that scales with your organisation.
+                </p>
+            </div>
 
-      <div className="pricing-card">
-        <h3 className="pricing-plan">Free Trial</h3>
-        <div className="pricing-price">£0</div>
+            <div class="pricing-grid">
 
-        <p className="pricing-description">
-          Full platform access for 14 days.
-        </p>
+                <div class="pricing-card">
+                    <h3 class="pricing-plan">Free Trial</h3>
+                    <p class="pricing-users">14 Day Evaluation</p>
 
-        <ul className="pricing-features">
-          <li>Full dashboard access</li>
-          <li>Cost analytics</li>
-          <li>Budget monitoring</li>
-          <li>No credit card required</li>
-        </ul>
+                    <div class="pricing-price">£0</div>
 
-        <button className="pricing-btn pricing-btn-secondary">
-          Start Trial
-        </button>
-      </div>
+                    <p class="pricing-description">
+                        Explore the full FinOps Dashboard before committing.
+                    </p>
 
-      <div className="pricing-card featured">
-        <div className="pricing-badge">Most Popular</div>
+                    <ul class="pricing-features">
+                        <li>Full platform access</li>
+                        <li>Cost analytics</li>
+                        <li>Budget monitoring</li>
+                        <li>Usage reporting</li>
+                        <li>No credit card required</li>
+                    </ul>
 
-        <h3 className="pricing-plan">Growth</h3>
-        <div className="pricing-price">
-          £15<span>/month</span>
+                    <button class="pricing-btn pricing-btn-outline">
+                        Start Free Trial
+                    </button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <span class="pricing-badge">Most Popular</span>
+
+                    <h3 class="pricing-plan">Growth</h3>
+                    <p class="pricing-users">Up to 100 Users</p>
+
+                    <div class="pricing-price">
+                        £15<span>/month</span>
+                    </div>
+
+                    <p class="pricing-description">
+                        Ideal for growing businesses needing visibility and control.
+                    </p>
+
+                    <ul class="pricing-features">
+                        <li>Up to 100 users</li>
+                        <li>Cost allocation</li>
+                        <li>Budget alerts</li>
+                        <li>Reporting exports</li>
+                        <li>Email support</li>
+                    </ul>
+
+                    <button class="pricing-btn">
+                        Get Started
+                    </button>
+                </div>
+
+                <div class="pricing-card">
+                    <h3 class="pricing-plan">Enterprise</h3>
+                    <p class="pricing-users">100+ Users</p>
+
+                    <div class="pricing-price">
+                        £42<span>/month</span>
+                    </div>
+
+                    <p class="pricing-description">
+                        Built for larger organisations managing cloud spend at scale.
+                    </p>
+
+                    <ul class="pricing-features">
+                        <li>Unlimited users</li>
+                        <li>Advanced forecasting</li>
+                        <li>Custom reporting</li>
+                        <li>Priority support</li>
+                        <li>Multi-team management</li>
+                    </ul>
+
+                    <button class="pricing-btn pricing-btn-outline">
+                        Sign Up
+                    </button>
+                </div>
+
+            </div>
         </div>
+    </section>
 
-        <p className="pricing-description">
-          Perfect for teams up to 100 users.
-        </p>
+     <section class="pricing-section" id="pricing">
+        <div class="pricing-container">
 
-        <ul className="pricing-features">
-          <li>Up to 100 users</li>
-          <li>Cost allocation</li>
-          <li>Budget alerts</li>
-          <li>Export reports</li>
-          <li>Email support</li>
-        </ul>
+            <div class="pricing-header">
+                <h2>AI Audit Pricing</h2>
+                <p>
+                    Easy to follow process to bring your organise up to speed and on par with AI. For Solicitors, Accountants and Consultants.
+                </p>
+            </div>
 
-        <button className="pricing-btn pricing-btn-primary">
-          Get Started
-        </button>
-      </div>
+            <div class="pricing-grid">
 
-      <div className="pricing-card">
-        <h3 className="pricing-plan">Enterprise</h3>
+                <div class="pricing-card">
+                    <h3 class="pricing-plan">Tier 1</h3>
+                    <p class="pricing-users">AI Opportunity Review</p>
 
-        <div className="pricing-price">
-          £42<span>/month</span>
+                    <div class="pricing-price">£495</div>
+
+                    <p class="pricing-description">
+                        Explore the full FinOps Dashboard before committing.
+                    </p>
+
+                    <ul class="pricing-features">
+                        <li>1 discovery meeting</li>
+                        <li>1 recommendations meeting</li>
+                        <li>Summary report</li>
+                    </ul>
+
+                    <button class="pricing-btn pricing-btn-outline">
+                        Buy Now
+                    </button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <span class="pricing-badge">Most Popular</span>
+
+                    <h3 class="pricing-plan">Tier 2</h3>
+                    <p class="pricing-users">AI Audit</p>
+
+                    <div class="pricing-price">
+                        £1,250
+                    </div>
+
+                    <p class="pricing-description">
+                        Ideal for growing businesses needing visibility and control.
+                    </p>
+
+                    <ul class="pricing-features">
+                        <li>2 workshops</li>
+                        <li>Process mapping</li>
+                        <li>Opportunity assessment</li>
+                        <li>Roadmap</li>
+                        <li>Full report</li>
+
+                    </ul>
+
+                    <button class="pricing-btn">
+                        Proceed
+                    </button>
+                </div>
+
+                <div class="pricing-card">
+                    <h3 class="pricing-plan">Tier 3</h3>
+                    <p class="pricing-users">AI Audit + Implementation Plan</p>
+
+                    <div class="pricing-price">
+                        £2,500
+                    </div>
+
+                    <p class="pricing-description">
+                        Built for larger organisations managing cloud spend at scale.
+                    </p>
+
+                    <ul class="pricing-features">
+                            <li>Everything above</li>
+                            <li>Plus:</li>
+                            <li>Implementation roadmap</li>
+                            <li>Technology recommendations</li>
+                            <li>ROI projections</li>
+                    </ul>
+
+                    <button class="pricing-btn pricing-btn-outline">
+                        Contact Sales
+                    </button>
+                </div>
+
+            </div>
         </div>
+    </section>
 
-        <p className="pricing-description">
-          Designed for larger organisations.
-        </p>
-
-        <ul className="pricing-features">
-          <li>100+ users</li>
-          <li>Advanced forecasting</li>
-          <li>Custom reporting</li>
-          <li>Priority support</li>
-        </ul>
-
-        <button className="pricing-btn pricing-btn-secondary">
-          Contact Sales
-        </button>
-      </div>
-
-    </div>
-  </div>
-</section>
 
     <section class="contact-section" id="contact">
     <div class="contact-card">
